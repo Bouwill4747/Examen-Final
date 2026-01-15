@@ -52,7 +52,20 @@ class App(QWidget):
         self.label_resultat.setText(f"Resultat : {resultat}")
 
     def sauvegarder_resultat(self):
-        pass
+        texte = self.label_resultat.text()
+
+        if texte == "":
+            QMessageBox.warning(self, "Erreur", "Aucun resultat a sauvegarder")
+            return
+
+        try:
+            f = open("resultats.txt", "w", encoding="utf-8")
+            f.write(texte)
+            f.close()
+            QMessageBox.information(self, "Succes", "Resultat sauvegarder")
+        except:
+            QMessageBox.critical(self, "Erreur", "Erreur pendant la sauvegarde")
+
 
     def charger_resultat(self):
         pass
