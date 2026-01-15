@@ -6,6 +6,7 @@ class Triangle:
         lignes = []
         for i in range(1, self.n + 1):
             lignes.append("*" * i)
+        return lignes
 
     def ligne_decroissant(self):
         lignes = []
@@ -15,9 +16,15 @@ class Triangle:
 
 class Affichage:
     def afficher(self, triangle):
-        pass
+        for ligne in triangle.ligne_croissant():
+            print(ligne)
 
-n = int(input("Entrer un entier n :"))
+        print() # C'est juste pour faire une séparation
+
+        for ligne in triangle.ligne_decroissant():
+            print(ligne)
+
+n = int(input("Entrer un entier n : "))
 
 triangle = Triangle(n)
 affichage = Affichage()
