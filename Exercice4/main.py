@@ -4,13 +4,24 @@ class Personnage:
         self.vie = 100
 
     def attaquer(self, degats):
-        pass
+        self.vie -= degats
+
+        if self.vie <= 0:
+            self.vie = 0
+            print(f"{self.nom} a perdu {degats} points de vie.")
+            print(f"{self.nom} est mort. Merci d'avoir jouer :D ")
+            exit()
+        else:
+            print(f"{self.nom} a perdu {degats} points de vie.")
 
     def soigner(self, points):
-        pass
+        self.vie += points
+        if self.vie > 100:
+            self.vie = 100
+        print(f"{self.nom} a gagner {points} points de vie.")
 
     def afficher(self):
-        pass
+        print(f"\nNom : {self.nom} | Vie : {self.vie}\n")
 
 nom = input("Entrez le nom de votre personnage : ")
 personnage = Personnage(nom)
