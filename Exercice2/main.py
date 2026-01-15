@@ -1,10 +1,13 @@
 import sys
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QApplication
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QApplication, QLineEdit, QPushButton
+
 
 class App(QWidget):
     def __init__(self):
         super().__init__()
+
+        self.resize(500, 350)
 
         self.setWindowTitle("Doubleur de Nombre")
 
@@ -12,6 +15,24 @@ class App(QWidget):
 
         self.label = QLabel("Entrez un nombre entier : ")
         self.layout.addWidget(self.label)
+
+        self.input_nombre = QLineEdit()
+        self.layout.addWidget(self.input_nombre)
+
+        self.btn_calculer = QPushButton("Calculer le double")
+        self.btn_calculer.clicked.connect(self.calculer_double)
+        self.layout.addWidget(self.btn_calculer)
+
+        self.label_resultat = QLabel("Resultat : ")
+        self.layout.addWidget(self.label_resultat)
+
+        self.btn_sauvegarder_resultat = QPushButton("Sauvegarder le resultat")
+        self.btn_sauvegarder_resultat.clicked.connect(self.sauvegarder_resultat)
+        self.layout.addWidget(self.btn_sauvegarder_resultat)
+
+        self.btn_charger = QPushButton("Charger un resultat")
+        self.btn_charger.clicked.connect(self.charger_resultat)
+        self.layout.addWidget(self.btn_charger)
 
         self.setLayout(self.layout)
 
