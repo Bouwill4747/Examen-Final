@@ -1,7 +1,6 @@
 import sys
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QApplication, QLineEdit, QPushButton
-
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QApplication, QLineEdit, QPushButton, QMessageBox
 
 class App(QWidget):
     def __init__(self):
@@ -37,7 +36,20 @@ class App(QWidget):
         self.setLayout(self.layout)
 
     def calculer_double(self):
-        pass
+        texte = self.input_nombre.text().strip()
+
+        if texte == "":
+            QMessageBox.information(self, "Erreur", "Le champ est vide")
+            return
+
+        try:
+            nombre = int(texte)
+        except ValueError:
+            QMessageBox.warning(self, "Erreur", "Veuillez entre un nombre entier valide")
+            return
+
+        resultat = nombre * 2
+        self.label_resultat.setText(f"Resultat : {resultat}")
 
     def sauvegarder_resultat(self):
         pass
