@@ -2,6 +2,7 @@ import sys
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QApplication, QLineEdit, QPushButton, QMessageBox
 
+
 class App(QWidget):
     def __init__(self):
         super().__init__()
@@ -35,6 +36,7 @@ class App(QWidget):
 
         self.setLayout(self.layout)
 
+
     def calculer_double(self):
         texte = self.input_nombre.text().strip()
 
@@ -50,6 +52,7 @@ class App(QWidget):
 
         resultat = nombre * 2
         self.label_resultat.setText(f"Resultat : {resultat}")
+
 
     def sauvegarder_resultat(self):
         texte = self.label_resultat.text()
@@ -68,7 +71,15 @@ class App(QWidget):
 
 
     def charger_resultat(self):
-        pass
+        try:
+            f = open("resultats.txt", "r", encoding="utf-8")
+            contenu = f.read().strip()
+            f.close()
+            self.label_resultat.setText(contenu)
+            QMessageBox.information(self, "Succes", "Resultat charger")
+        except:
+            QMessageBox.critical(self, "Erreur", "Erreur pendant la chargement")
+
 
 app = QApplication(sys.argv)
 fenetre = App()
