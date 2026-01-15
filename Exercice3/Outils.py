@@ -10,8 +10,11 @@ class Outils:
             while True:
                 try:
                     nombre = int(input(f"Nombres {i + 1} : "))
-                    self.nombres.append(nombre)
-                    break
+                    if nombre > 0:
+                        self.nombres.append(nombre)
+                        break
+                    else:
+                        print("Veuillez mettre un nombre positif")
                 except ValueError:
                     print("Veuillez entrer un nombre entier valide")
 
@@ -20,13 +23,24 @@ class Outils:
         print(self.nombres)
 
     def min(self):
-        pass
+        minimum = self.nombres[0]
+        for nombre in self.nombres:
+            if nombre < minimum:
+                minimum = nombre
+        return minimum
 
     def max(self):
-        pass
+        maximum = self.nombres[0]
+        for nombre in self.nombres:
+            if nombre > maximum:
+                maximum = nombre
+        return maximum
 
     def somme(self):
-        pass
+        total = 0
+        for nombre in self.nombres:
+            total += nombre
+        return total
 
     def moyenne(self):
-        pass
+        return self.somme() / len(self.nombres)
