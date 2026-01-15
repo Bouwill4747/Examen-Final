@@ -24,8 +24,18 @@ class Affichage:
         for ligne in triangle.ligne_decroissant():
             print(ligne)
 
-n = int(input("Entrer un entier n : "))
+def demander_entier():
+    while True:
+        try:
+            n = int(input("Entrer un nombre : "))
+            if n > 0:
+                return n
+            else:
+                print("Erreur! Veuillez entrez un nombre entier positif")
+        except ValueError:
+            print("Erreur! Veuillez entrez un nombre valide")
 
+n= demander_entier()
 triangle = Triangle(n)
 affichage = Affichage()
 affichage.afficher(triangle)
